@@ -1,0 +1,28 @@
+var fs = require("fs");
+var inputText = fs.readFileSync("C:/Extrení disk - Lokálně/zalohy/Jachym/kód/ksp2021/01.in").toString()
+inputLines = inputText.split("\n")
+inputLines.shift()
+inputLines.pop()
+
+
+
+var days = ""
+
+function letopocty(){
+
+for(let i of inputLines){
+let day= 0;
+let end = i.split(" ")[1]
+let start =i.split(" ")[0]
+let sub = end-start
+for(;sub!=0;sub--){
+            if(start%3==0&&start%48!=0){
+                day+=1
+            }
+                day+=42
+        }
+        days+=day + "\n"
+    }
+    fs.writeFileSync("ksp2021kps-letopocty-vystup.txt", days,)
+}
+letopocty()

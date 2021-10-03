@@ -1,30 +1,34 @@
-var fs = require("fs");
-var inputText = fs.readFileSync("C:/Extrení disk - Lokálně/zalohy/Jachym/kód/ksp2021/01.in").toString()
-//tady rozděluju input abych s tím mohl normálně pracovat
+import { readFileSync, writeFileSync } from "fs";
+var inputText = readFileSync("C:/Extrení disk - Lokálně/zalohy/Jachym/kód/ksp2021/letopocty/03.in").toString()
 inputLines = inputText.split("\n")
 inputLines.shift()
 inputLines.pop()
 
-
-//finální výstup musí to být jako string, protože array by mi nešel napasovat rovnou do dalšího souboru a tohle dělá i hezky řádky tak jak je potřebují
 var days = ""
 
 function letopocty(){
-
 for(let i of inputLines){
 let day= 0;
 let end = i.split(" ")[1]
 let start =i.split(" ")[0]
-end++
-//tohle je to celé srdce. přidává to po jednom a čekuje podmínky, které jsou v zadání
-for(;start!=end;start++){
-            if(start%3==0&&start%48!=0){
-                day+=1
-            }
-                day+=42
-        }
-        days+=day + "\n"
+
+let mult = (end-start)*42
+let sub = Math.floor((end-start)/3) - Math.floor((end-start)/48)
+
+if (start%3==0 && start%48!=0){
+    sub++
     }
-    fs.writeFileSync("ksp2021kps-letopocty-vystup.txt", days,)
+else if(end%3==0 && end%48!=0){
+    sub++
+    }
+else if(end%48==0 || start%48==0){
+sub--
+}
+
+day+=mult + sub
+days+=day + "\n"
+
+    }
+    writeFileSync("ksp2021kps-letopocty-vystup.txt", days,)
 }
 letopocty()

@@ -29,3 +29,4 @@ for(;min < max;){
     }
 }
 fs.writeFileSync("ksp2021kps-letopocty-vystup.txt",odpoved +" ")
+tvoje máma

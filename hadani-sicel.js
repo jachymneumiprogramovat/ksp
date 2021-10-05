@@ -12,7 +12,7 @@ async function zkouska(tip){
 axios.get(url+"&q="+tip)
 .then(resp => {
     return resp.data
-}).catch(console.log("tohle je pěkně v prdeli", console.error()))
+}).catch(console.log("tohle je pěkně v prcici"))
 }
 
 for(;min < max;){

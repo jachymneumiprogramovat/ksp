@@ -1,3 +1,4 @@
+//input
 var fs = require("fs");
 var axios = require("axios")
 var input = fs.readFileSync("C:/Extrení disk - Lokálně/zalohy/Jachym/kód/ksp2021/hadani-cisel/01.in").toString()
@@ -8,15 +9,16 @@ let max = input.split("\n")[0]
 
 let url = input.split("\n")[1]
 
+//pokus o komunikaci se servrem
 async function zkouska(tip){
-axios.get(url+"&q="+tip)
-.then(resp => {
-    return resp.data
-}).catch(console.log("tohle je pěkně v prcici"))
+const odpoved =await axios.get(url + `&q=${tip}`).then(resp =>resp.datat)
+return odpoved
 }
 
-for(;min < max;){
-    let mid = (max+min)/2
+//rozděl a panuj
+async function loop(){
+for(;min<max;){
+    let mid = Math.floor((max+min)/2)
     if(zkouska(mid)=="Trefa"){
         odpoved = mid
         break;
@@ -24,8 +26,9 @@ for(;min < max;){
     else if(zkouska(mid)=="Uber"){
         max=mid
     }
-    else{
+    else if(zkouska(mid)=="Pridej"){
         min=mid + 1
+        }
     }
 }
 fs.writeFileSync("ksp2021kps-letopocty-vystup.txt",odpoved +" ")

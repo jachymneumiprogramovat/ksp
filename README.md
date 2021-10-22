@@ -1,4 +1,5 @@
 # ksp
 ksp2021
 -letopocty
--uh programování
+-cisla domu
+-hadani cisel (pls help neumim komunikovat se servrem)

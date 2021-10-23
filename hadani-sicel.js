@@ -1,36 +1,43 @@
-//input
 var fs = require("fs");
-var axios = require("axios")
-var input = fs.readFileSync("C:/Extrení disk - Lokálně/zalohy/Jachym/kód/ksp2021/hadani-cisel/01.in").toString()
+var axios = require("axios");
+var input = fs.readFileSync("C:/Users/Běžný_člověk/Desktop/ksp2021/hadani-cisel/01.in").toString()
 
 let odpoved;
 let min = 0
 let max = input.split("\n")[0]
+max = parseInt(max)
 
 let url = input.split("\n")[1]
 
-//pokus o komunikaci se servrem
-async function zkouska(tip){
-const odpoved =await axios.get(url + `&q=${tip}`).then(resp =>resp.datat)
-return odpoved
+//`&q=${tip}`
+
+async function main(tip) {
+	// dostaň odpověď od serveru a zavolej co chceš
+	await axios.get(url + `&q=${tip}`).then(response => {
+		loop(response.data.toString())
+	});
 }
 
-//rozděl a panuj
-async function loop(){
-for(;min<max;){
+
+
+
+async function loop(res){
     let mid = Math.floor((max+min)/2)
-    if(zkouska(mid)=="Trefa"){
+res= res.trim()
+    if(res=="Trefa"){
         odpoved = mid
-        break;
     }
-    else if(zkouska(mid)=="Uber"){
-        max=mid
+    else if(res=="Uber"){
+        max=mid + 1
+        main(mid)
+        console.log(res, mid)
     }
-    else if(zkouska(mid)=="Pridej"){
-        min=mid + 1
+    else if(res=="Pridej"){
+        min=mid
+        main(mid)
+        console.log(res, mid, max, min, max>min)
         }
-    }
 }
-fs.writeFileSync("ksp2021kps-letopocty-vystup.txt",odpoved +" ")
+main(100)
 
-//pls pomoc
+fs.writeFileSync("ksp2021kps-letopocty-vystup.txt",odpoved +" ")

@@ -1,0 +1,7 @@
+teoterické řešení úlohy KSP-Z1-4
+Nejdříve najdeme mezi odesílateli id 1 a podíváme se komu zprávu odeslal.
+Obě id uživatelů si uschováme do pomocného pole.
+Potom se posuneme na dalšího odesílatele a ověříme si jestli jeho id není již v našem pomocném poli.
+Jestli ne tak se rovnou posuneme na dalšího odesílatele. Pokud se ovšem shoduje tak si do pole uložíme i id 
+příjemce jeho zprávy a takhle po M krocích získáme pole s id lidí, které o kevinovi vědí.
+A to vypíšeme jako výstup.

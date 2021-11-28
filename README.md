@@ -1,6 +1,4 @@
 # ksp
 ksp2021
--letopocty
--cisla domu
--hadani cisel (pls help neumim komunikovat se servrem)
- 
+série 1 - 20/44 
+série 2 zatím - 7/44
